@@ -160,7 +160,9 @@ export const ProtectedPage = () => {
                 </Button>
                 <Tooltip variant={"header"}>Add new feedback</Tooltip>
               </div>
-              {modalForm && <ModalForm onClose={colseModalForm} />}
+              {modalForm && (
+                <ModalForm onClose={colseModalForm} refetch={getFeedbacks} />
+              )}
             </div>
             {state.map((data) => (
               <FeedbacksContent
