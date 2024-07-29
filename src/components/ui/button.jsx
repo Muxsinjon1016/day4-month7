@@ -18,8 +18,12 @@ export const Button = ({
     submit:
       "rounded-[12px] outline-none py-2 px-6 bg-green-600 text-white text-lg font-medium flex items-center justify-center mx-auto w-[100%]",
     add: "bg-[#ad1fea] rounded-[10px] py-[12px] px-[25px] text-white font-bold text-base",
-    danger: "bg-red-600 text-white hover:bg-red-500 block font-medium mb-2 text-base rounded-[10px] py-2 px-4",
-    warning: "bg-yellow-400 text-white ml-auto hover:bg-yellow-300 block font-medium text-base rounded-[10px] py-2 px-4",
+    danger:
+      "bg-red-600 text-white hover:bg-red-500 block font-medium mb-2 text-base rounded-[10px] py-2 px-4",
+    warning:
+      "bg-yellow-400 text-white ml-auto hover:bg-yellow-300 block font-medium text-base rounded-[10px] py-2 px-4",
+    cencel:
+      "bg-[#3a4374] rounded-[10px] py-[12px] px-[25px] text-white font-bold text-base",
   };
 
   return (

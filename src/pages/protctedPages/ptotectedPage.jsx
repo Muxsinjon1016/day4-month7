@@ -5,15 +5,34 @@ import { Outlet } from "react-router-dom";
 import { Button } from "../../components/ui/button";
 import { request } from "../../config/request";
 import { UiFeedbacks } from "./components/uiFeedbacks";
+import Tooltip from "../../components/ui/tooltip";
+import ModalForm from "../../components/ui/modalForm";
+import { FeedbacksContent } from "./components/feedbacksContent";
 
 export const ProtectedPage = () => {
+  const [modalForm, setModalForm] = React.useState(false);
+  const [state, setState] = React.useState([]);
   const user = loadState("user");
   if (!user) return <Navigate to="/login" />;
 
+  const getFeedbacks = () => {
+    request.get("/feedback").then((res) => {
+      setState(res.data);
+    });
+  };
+
+  React.useEffect(() => {
+    getFeedbacks();
+  }, []);
+
+  const colseModalForm = () => {
+    setModalForm(false);
+  };
+
   return (
-    <div className="bg-[#F7F8FD]">
+    <div className="bg-[#F7F8FD] px-[32px] bg-fixed min-h-screen">
       <div className="container flex">
-        <div className="min-h-screen w-[225px] p-5">
+        <div className="min-h-screen fixed  w-[225px] p-5">
           <div className="bg-bgGradient mb-6 w-[225px] rounded-[10px] p-[24px]">
             <div className="mt-[38px]">
               <h3 className="text-xl font-bold text-white">Frontend Mentor</h3>
@@ -97,7 +116,7 @@ export const ProtectedPage = () => {
             </NavLink>
           </div>
         </div>
-        <div className="w-[80%] m-5">
+        <div className="w-[80%] ml-auto m-5">
           <div className="ml-5 mb-4">
             <div className="bg-[#373f68] container flex items-center justify-between rounded-[10px] ml-5 mb-6 py-[14px] px-[16px] pl-[20px]">
               <div className="flex items-center gap-[38px]">
@@ -132,9 +151,24 @@ export const ProtectedPage = () => {
                   </select>
                 </p>
               </div>
-              <Button variant={"add"}>+ Add Feedback</Button>
+              <div className="relative headerBtn">
+                <Button
+                  onClick={() => setModalForm(!modalForm)}
+                  variant={"add"}
+                >
+                  + Add Feedback
+                </Button>
+                <Tooltip variant={"header"}>Add new feedback</Tooltip>
+              </div>
+              {modalForm && <ModalForm onClose={colseModalForm} />}
             </div>
-            <Outlet />
+            {state.map((data) => (
+              <FeedbacksContent
+                key={data.id}
+                refetch={getFeedbacks}
+                {...data}
+              />
+            ))}
           </div>
         </div>
       </div>

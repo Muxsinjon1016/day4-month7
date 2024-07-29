@@ -44,7 +44,7 @@ export const FeedbacksContent = ({
               <div
                 onClick={() => feedbackId()}
                 className={`bg-[#f2f4fe] cursor-pointer transition overflow-hidden duration-500 w-[40px] rounded-[10px] p-2 ${
-                  idOpen ? " h-[53px]" : " h-[32px]"
+                  idOpen ? " h-[53px]" : " h-[30px]"
                 }`}
               >
                 <FaChevronUp className="w-[15px] mt-1 h-auto mx-auto bg-transparent text-[#4661e6]" />

@@ -12,3 +12,11 @@ input {
   background-color: transparent;
   outline: none;
 }
+
+.headerTooltip {
+  display: none;
+}
+
+.headerBtn:hover .headerTooltip {
+  display: block;
+}
